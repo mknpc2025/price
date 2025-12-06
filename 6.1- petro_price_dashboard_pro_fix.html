@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>داشبورد حرفه‌ای قیمت‌گذاری محصولات پتروشیمی</title>
+
+  <!-- KaTeX local -->
+  <link rel="stylesheet" href="libs/katex/katex.min.css" />
+
+  <!-- Base styles -->
+  <style>
+    :root {
+      --bg-main: #f5f6fb;
+      --bg-card: #ffffff;
+      --border-soft: #dde1ec;
+      --text-main: #111111;
+      --text-muted: #555555;
+      --accent: #2563eb;
+      --accent-soft: #e0ecff;
+      --accent-2: #0ea5e9;
+      --danger: #dc2626;
+      --success: #16a34a;
+      --radius-lg: 18px;
+      --shadow-soft: 0 8px 28px rgba(15, 23, 42, 0.08);
+      --font-base: 16px;
+      --font-small: 14px;
+      --font-large: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-size: var(--font-base);
+      direction: rtl;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0 0 8px 0;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    h1 {
+      font-size: 26px;
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+
+    p {
+      margin: 4px 0 10px 0;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .app-shell {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: var(--font-small);
+      color: var(--text-muted);
+    }
+
+    .pill {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--font-small);
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-soft);
+      padding-bottom: 4px;
+    }
+
+    .tab-button {
+      border: none;
+      background: transparent;
+      padding: 8px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-button.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #ffffff;
+      box-shadow: 0 10px 26px rgba(37, 99, 235, 0.3);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 16px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-subtitle {
+      font-size: var(--font-small);
+      color: var(--text-muted);
+    }
+
+    /* Forms */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 12px 18px;
+      margin-top: 8px;
+    }
+
+    label {
+      display: block;
+      font-size: var(--font-small);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--border-soft);
+      font-size: 15px;
+      background: #f9fafb;
+      color: var(--text-main);
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid rgba(37, 99, 235, 0.35);
+      outline-offset: 1px;
+      background: #ffffff;
+    }
+
+    .input-inline-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    button {
+      font-family: inherit;
+      font-size: 15px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    button:active {
+      transform: translateY(1px);
+      box-shadow: none !important;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #ffffff;
+      box-shadow: 0 10px 26px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-secondary {
+      background: #e5e7eb;
+      color: #111827;
+      box-shadow: 0 6px 18px rgba(148, 163, 184, 0.45);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-sm {
+      padding: 5px 10px;
+      font-size: 13px;
+    }
+
+    /* Layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-3-kpi {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .kpi-card {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #f9fafb;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .kpi-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .kpi-unit {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+
+    .kpi-tag {
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    th, td {
+      padding: 6px 8px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    th {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+
+    tbody tr:hover {
+      background: #f9fafb;
+    }
+
+    .table-wrapper {
+      max-height: 360px;
+      overflow: auto;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    /* Charts */
+    .chart-container {
+      position: relative;
+      width: 100%;
+      height: 260px;
+    }
+
+    /* Status & badges */
+    .status-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .status-text strong {
+      color: var(--text-main);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      border-radius: 999px;
+      padding: 2px 8px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+    }
+
+    .badge-success {
+      border-color: rgba(22, 163, 74, 0.8);
+      color: var(--success);
+    }
+
+    /* Math / KaTeX in RTL */
+    .math-inline {
+      direction: ltr;
+      unicode-bidi: bidi-override;
+      display: inline-block;
+    }
+
+    .katex {
+      direction: ltr;
+      unicode-bidi: bidi-override;
+      font-size: 1.05em;
+    }
+
+    .katex-display {
+      direction: ltr;
+      text-align: left;
+      margin: 0.75em 0;
+    }
+
+    /* Inputs grouping */
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      margin: 12px 0 4px 0;
+      color: var(--text-main);
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .pill-small {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 6px;
+      border-radius: 999px;
+      background: #e5e7eb;
+      color: #374151;
+      font-size: 11px;
+      margin-right: 6px;
+    }
+
+    .divider {
+      border-top: 1px dashed #e5e7eb;
+      margin: 10px 0;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      body {
+        padding: 10px;
+      }
+    }
+  </style>
+
+  <!-- XLSX / Chart / Jalaali local scripts -->
+  <script src="libs/xlsx.full.min.js"></script>
+  <script src="libs/jalaali.min.js"></script>
+  <script src="libs/chart.umd.min.js"></script>
+  <script src="libs/katex/katex.min.js"></script>
+  <script src="libs/katex/contrib/auto-render.min.js"></script>
+</head>
+
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <h1>داشبورد حرفه‌ای قیمت‌گذاری محصولات پتروشیمی</h1>
+      <div class="header-meta">
+        <span class="pill">📊 سیستم شاخص‌سازی IMB-IRR و IMB-USD</span>
+        <span class="pill">⚙️ مبتنی بر معاملات واقعی بورس انرژی</span>
+        <span class="pill">🧮 فرمول‌ها با <span class="math-inline">KaTeX</span> و امکان تنظیم پارامترها</span>
+      </div>
+      <p>
+        در این داشبورد می‌توانید<strong> فایل اکسل معاملات و اطلاعیه‌های عرضه</strong> را بارگذاری کنید، شاخص‌های هفتگی داخلی و صادراتی را
+        استخراج کنید و سپس بر اساس متدولوژی طراحی‌شده،
+        <strong>قیمت پایه پیشنهادی هفته بعد</strong> را محاسبه و تنظیم نمایید.
+      </p>
+    </header>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button id="tab-analysis" class="tab-button active" type="button">
+        📈 تحلیل بازار و شاخص‌های فعلی
+      </button>
+      <button id="tab-pricing" class="tab-button" type="button">
+        🧮 قیمت‌گذاری و سناریوی هفته بعد
+      </button>
+    </div>
+
+    <!-- Tab 1: Analysis -->
+    <section id="content-analysis" class="tab-content active">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">بارگذاری داده‌های اکسل</div>
+            <div class="card-subtitle">فایل آمار معاملات بازار فیزیکی (و ترجیحاً اطلاعیه عرضه) را بارگذاری کنید.</div>
+          </div>
+        </div>
+        <div class="form-grid" style="align-items: flex-end;">
+          <div>
+            <label for="file-input">فایل اکسل معاملات / اطلاعیه‌ها</label>
+            <input id="file-input" type="file" accept=".xlsx,.xls" />
+            <div class="input-inline-desc">ساختار ستونی فایل مطابق خروجی بورس انرژی (ستون‌های فارسی) فرض شده است.</div>
+          </div>
+          <div>
+            <label>وضعیت پردازش</label>
+            <div id="status-text" class="status-text">هنوز فایلی بارگذاری نشده است.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Left: KPIs & table -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">خلاصه شاخص‌های هفتگی</div>
+              <div class="card-subtitle">گزارش بر اساس «هفته منتهی به چهارشنبه» تجمیع شده است.</div>
+            </div>
+            <span class="badge" id="data-range-badge">بازه داده: -</span>
+          </div>
+
+          <div class="grid-3-kpi">
+            <div class="kpi-card">
+              <div class="kpi-label">آخرین IMB-IRR (معاملاتی)</div>
+              <div><span id="kpi-imb-irr" class="kpi-value">-</span><span class="kpi-unit">ریال/کیلوگرم</span></div>
+              <div id="kpi-imb-irr-week" class="kpi-tag"></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">آخرین IMB-USD (معاملاتی)</div>
+              <div><span id="kpi-imb-usd" class="kpi-value">-</span><span class="kpi-unit">دلار/تن</span></div>
+              <div id="kpi-imb-usd-week" class="kpi-tag"></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">حجم کل داخلی / صادراتی (هفته آخر)</div>
+              <div><span id="kpi-volumes" class="kpi-value">-</span></div>
+              <div id="kpi-volumes-detail" class="kpi-tag"></div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="card-subtitle">جزئیات هفتگی</div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>هفته</th>
+                  <th>IMB-IRR (ریال/کیلو)</th>
+                  <th>IMB-USD (دلار/تن)</th>
+                  <th>حجم داخلی (تن)</th>
+                  <th>حجم صادراتی (تن)</th>
+                  <th>HHI داخلی</th>
+                  <th>HHI صادراتی</th>
+                  <th>تعداد معاملات</th>
+                </tr>
+              </thead>
+              <tbody id="weekly-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right: Charts -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">نمودار روند شاخص‌ها</div>
+              <div class="card-subtitle">IMB-IRR و IMB-USD در کنار حجم معاملات داخلی و صادراتی</div>
+            </div>
+          </div>
+          <div class="chart-container" style="margin-bottom: 18px;">
+            <canvas id="chart-prices"></canvas>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-volumes"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tab 2: Pricing -->
+    <section id="content-pricing" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">تنظیمات قیمت‌گذاری و انتخاب هفته مرجع</div>
+            <div class="card-subtitle">ابتدا هفته t را برای محاسبه قیمت‌های مرجع انتخاب کنید؛ سپس پارامترها را تنظیم/بازبینی کنید.</div>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div>
+            <label for="select-week">انتخاب هفته مرجع t</label>
+            <select id="select-week"></select>
+            <div class="input-inline-desc">هفته‌ای را که می‌خواهید بر اساس آن قیمت پایه هفته بعد را پیش‌بینی کنید انتخاب نمایید (معمولاً آخرین هفته).</div>
+          </div>
+          <div>
+            <label>استخراج خودکار پارامترها از داده‌ها</label>
+            <div class="btn-row">
+              <button id="btn-auto-fill" type="button" class="btn-secondary btn-sm">✨ پر کردن خودکار از هفته انتخاب شده</button>
+              <button id="btn-reset-defaults" type="button" class="btn-ghost btn-sm">🔁 بازگشت به مقادیر پیش‌فرض</button>
+            </div>
+            <div class="input-inline-desc">در صورت امکان، داشبورد پارامترها را از روی VWAP داخلی/صادراتی و FX همان هفته تخمین می‌زند.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Left: current week refs -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">مرجع‌های هفته t</div>
+              <div class="card-subtitle">بر اساس معاملات و ورودی‌های هزینه / Netback</div>
+            </div>
+          </div>
+
+          <div class="section-label">۱) داده‌های معاملاتی هفته t (خروجی خودکار)</div>
+          <div class="form-grid">
+            <div>
+              <label>VWAP داخلی \(\widehat{p_t^{IRR}}\)</label>
+              <input id="inp-domestic-vwap" type="number" step="0.01" />
+              <div class="input-inline-desc">میانگین موزون معاملات داخلی (ریال/کیلوگرم)</div>
+            </div>
+            <div>
+              <label>VWAP صادراتی (دلار/تن)</label>
+              <input id="inp-export-vwap" type="number" step="0.01" />
+              <div class="input-inline-desc">میانگین موزون معاملات صادراتی هفته t</div>
+            </div>
+            <div>
+              <label>میانگین وزنی FX صادراتی</label>
+              <input id="inp-fx-export" type="number" step="1" />
+              <div class="input-inline-desc">نرخ تسعیر ریال/دلار متناسب با حجم معاملات صادراتی</div>
+            </div>
+          </div>
+
+          <div class="section-label">۲) مدل هزینه تمام‌شده (CPP)</div>
+          <div class="form-grid">
+            <div>
+              <label>هزینه خوراک + انرژی + OPEX + CAPEX</label>
+              <input id="inp-cpp-base" type="number" step="0.01" />
+              <div class="input-inline-desc">جمع هزینه‌های تولید به ازای هر کیلوگرم (ریال/کیلوگرم)</div>
+            </div>
+            <div>
+              <label>حاشیه سود/ریسک CPP \(\mu\)</label>
+              <input id="inp-cpp-margin" type="number" step="0.001" />
+              <div class="input-inline-desc">مثال: ۰٫۰۶ یعنی ۶٪ حاشیه روی هزینه تولید</div>
+            </div>
+            <div>
+              <label>مالیات و عوارض (Tax)</label>
+              <input id="inp-tax" type="number" step="0.01" />
+              <div class="input-inline-desc">در صورت نیاز (ریال/کیلوگرم)، در غیر این صورت ۰</div>
+            </div>
+          </div>
+
+          <div class="section-label">۳) Netback صادراتی</div>
+          <div class="form-grid">
+            <div>
+              <label>Netback (دلار/تن)</label>
+              <input id="inp-netback-usd" type="number" step="0.01" />
+              <div class="input-inline-desc">\(P_t^{net,USD/ton} = CFR - Freight - هزینه‌های لجستیک\)</div>
+            </div>
+            <div>
+              <label>Netback (ریال/کیلوگرم)</label>
+              <input id="inp-netback-irr" type="number" step="0.01" />
+              <div class="input-inline-desc">به صورت خودکار از Netback دلاری و FX محاسبه می‌شود یا دستی تنظیم کنید.</div>
+            </div>
+          </div>
+
+          <div class="section-label">۴) ترکیب برای مرجع داخلی و صادراتی</div>
+          <p class="muted">
+            مرجع داخلی با فرمول زیر تشکیل می‌شود:
+            <span class="math-inline">\(P_t^{ref,IRR} = w_{VWAP}\,\widehat{p_t^{IRR}} + w_{CPP}\,P_t^{CPP} + w_{net}\,P_t^{net,IRR}\)</span>
+          </p>
+          <div class="form-grid">
+            <div>
+              <label>وزن VWAP داخلی \(w_{VWAP}\)</label>
+              <input id="inp-w-vwap" type="number" step="0.01" />
+            </div>
+            <div>
+              <label>وزن CPP \(w_{CPP}\)</label>
+              <input id="inp-w-cpp" type="number" step="0.01" />
+            </div>
+            <div>
+              <label>وزن Netback \(w_{net}\)</label>
+              <input id="inp-w-net" type="number" step="0.01" />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid-3-kpi">
+            <div class="kpi-card">
+              <div class="kpi-label">\(P_t^{CPP,IRR/kg}\)</div>
+              <div><span id="kpi-cpp-irr" class="kpi-value">-</span><span class="kpi-unit">ریال/کیلوگرم</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">\(P_t^{net,IRR/kg}\)</div>
+              <div><span id="kpi-net-irr" class="kpi-value">-</span><span class="kpi-unit">ریال/کیلوگرم</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">\(P_t^{ref,IRR}\)</div>
+              <div><span id="kpi-pref-irr" class="kpi-value">-</span><span class="kpi-unit">ریال/کیلوگرم</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: forecasting -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">پیش‌بینی قیمت پایه هفته بعد</div>
+              <div class="card-subtitle">ترکیب IMB فعلی، CFR جهانی و FX برای تعیین Base<sub>t+1</sub></div>
+            </div>
+          </div>
+
+          <div class="section-label">۱) ورودی‌های CFR جهانی و FX</div>
+          <p class="muted">
+            ابتدا تغییر CFR چین نسبت به هفته قبل محاسبه می‌شود:
+            <span class="math-inline">\(\Delta_{glob,t} = \ln\left(\frac{CFR_{CN,t}}{CFR_{CN,t-1}}\right)\)</span>
+            سپس CFR پیش‌بینی‌شده هفته بعد به صورت زیر تقریبی محاسبه می‌گردد:
+            <span class="math-inline">\(CFR_{CN,t+1}^{fwd} \approx CFR_{CN,t}\,e^{\phi_{glob}\,\Delta_{glob,t}}\)</span>
+          </p>
+
+          <div class="form-grid">
+            <div>
+              <label>CFR چین هفته t</label>
+              <input id="inp-cfr-t" type="number" step="0.01" />
+              <div class="input-inline-desc">\(CFR_{CN,t}\) بر حسب دلار/تن</div>
+            </div>
+            <div>
+              <label>CFR چین هفته t-1</label>
+              <input id="inp-cfr-t-1" type="number" step="0.01" />
+              <div class="input-inline-desc">\(CFR_{CN,t-1}\) بر حسب دلار/تن</div>
+            </div>
+            <div>
+              <label>ضریب حساسیت جهانی \(\phi_{glob}\)</label>
+              <input id="inp-phi-glob" type="number" step="0.01" />
+              <div class="input-inline-desc">مثال: ۰٫۸ یعنی ۸۰٪ از تغییر جهانی را منتقل می‌کنیم.</div>
+            </div>
+            <div>
+              <label>FX مورد انتظار هفته بعد</label>
+              <input id="inp-fx-next" type="number" step="1" />
+              <div class="input-inline-desc">\(FX_{t+1}^{exp}\) نرخ تسعیر مورد انتظار (ریال/دلار)</div>
+            </div>
+          </div>
+
+          <div class="section-label">۲) قیمت قراردادی فروشنده و مرجع صادراتی</div>
+          <p class="muted">
+            اگر فرمول قراردادی به صورت
+            <span class="math-inline">\(P^{form} = C \times (1+m)\)</span>
+            باشد (مثلاً \(C \times 1.1\))، این مقدار به عنوان یکی از لنگرهای قیمت صادراتی به‌کار می‌رود.
+          </p>
+
+          <div class="form-grid">
+            <div>
+              <label>C (میانگین نشریات CFR چین / WCI)</label>
+              <input id="inp-C-form" type="number" step="0.01" />
+              <div class="input-inline-desc">میانگین mid-point نشریات (دلار/تن)</div>
+            </div>
+            <div>
+              <label>حاشیه m در فرمول فروشنده</label>
+              <input id="inp-m-form" type="number" step="0.001" />
+              <div class="input-inline-desc">مثلاً ۰٫۱ یعنی ۱۰٪ بالاتر از C</div>
+            </div>
+            <div>
+              <label>\(P_t^{ref,USD}\) (مرجع صادراتی t)</label>
+              <input id="inp-pref-usd" type="number" step="0.01" />
+              <div class="input-inline-desc">ترکیبی از معاملات صادراتی، Netback و فرمول فروشنده (دلار/تن)</div>
+            </div>
+          </div>
+
+          <div class="section-label">۳) ترکیب برای Base<sub>t+1,USD</sub> و Base<sub>t+1,IRR</sub></div>
+          <p class="muted">
+            قیمت پایه صادراتی هفته بعد به صورت زیر تعریف می‌شود:
+            <span class="math-inline">\(Base_{t+1,USD}^{raw} = \eta_1 P_t^{ref,USD} + \eta_2 CFR_{CN,t+1}^{fwd} + \eta_3 P_t^{form,USD}\)</span>
+            که در آن
+            <span class="math-inline">\(\eta_1 + \eta_2 + \eta_3 = 1\)</span>.
+          </p>
+
+          <div class="form-grid">
+            <div>
+              <label>وزن مرجع صادراتی \(\eta_1\)</label>
+              <input id="inp-eta1" type="number" step="0.01" />
+            </div>
+            <div>
+              <label>وزن CFR فوروارد \(\eta_2\)</label>
+              <input id="inp-eta2" type="number" step="0.01" />
+            </div>
+            <div>
+              <label>وزن فرمول فروشنده \(\eta_3\)</label>
+              <input id="inp-eta3" type="number" step="0.01" />
+            </div>
+          </div>
+
+          <p class="muted">
+            سپس \(Base_{t+1,USD}^{raw}\) به ریال/کیلوگرم لنگر می‌شود:
+            <span class="math-inline">\(P_{t+1,USD}^{anchor\to IRR} = \dfrac{Base_{t+1,USD}^{raw} \times FX_{t+1}^{exp}}{1000}\)</span>
+            و قیمت پایه داخلی هفته بعد با فرمول زیر به دست می‌آید:
+            <span class="math-inline">\(Base_{t+1,IRR}^{raw} = \gamma_1 P_t^{ref,IRR} + \gamma_2 \widehat{p_t^{IRR}} + \gamma_3 P_{t+1,USD}^{anchor\to IRR}\)</span>
+            که در آن
+            <span class="math-inline">\(\gamma_1 + \gamma_2 + \gamma_3 = 1\)</span>.
+          </p>
+
+          <div class="form-grid">
+            <div>
+              <label>وزن مرجع داخلی \(\gamma_1\)</label>
+              <input id="inp-gamma1" type="number" step="0.01" />
+            </div>
+            <div>
+              <label>وزن VWAP داخلی \(\gamma_2\)</label>
+              <input id="inp-gamma2" type="number" step="0.01" />
+            </div>
+            <div>
+              <label>وزن لنگر صادراتی \(\gamma_3\)</label>
+              <input id="inp-gamma3" type="number" step="0.01" />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="btn-row">
+            <button id="btn-calc-pricing" type="button" class="btn-primary">🧮 محاسبه قیمت پایه‌های هفته بعد</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="grid-3-kpi">
+            <div class="kpi-card">
+              <div class="kpi-label">\(CFR_{CN,t+1}^{fwd}\)</div>
+              <div><span id="kpi-cfr-fwd" class="kpi-value">-</span><span class="kpi-unit">دلار/تن</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">\(Base_{t+1,USD}^{raw}\)</div>
+              <div><span id="kpi-base-usd" class="kpi-value">-</span><span class="kpi-unit">دلار/تن</span></div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-label">\(P_{t+1,USD}^{anchor\to IRR}\)</div>
+              <div><span id="kpi-anchor-irr" class="kpi-value">-</span><span class="kpi-unit">ریال/کیلوگرم</span></div>
+            </div>
+          </div>
+
+          <div class="grid-3-kpi" style="margin-top: 10px;">
+            <div class="kpi-card">
+              <div class="kpi-label">\(Base_{t+1,IRR}^{raw}\)</div>
+              <div><span id="kpi-base-irr" class="kpi-value">-</span><span class="kpi-unit">ریال/کیلوگرم</span></div>
+              <div class="kpi-tag">پیشنهاد قیمت پایه داخلی هفته بعد قبل از هر نوع تعدیل سیاستی</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // ---------------------------
+    // حالت سراسری داشبورد
+    // ---------------------------
+    const state = {
+      trades: [], // همه معاملات نرمال‌شده
+      weeks: [],  // آرایه‌ی هفته‌ها با شاخص‌ها
+      charts: {
+        prices: null,
+        volumes: null,
+      },
+      selectedWeekKey: null,
+    };
+
+    // ---------------------------
+    // ابزار کمکی: تشخیص داخلی / صادراتی و نرمال‌سازی قیمت
+    // ---------------------------
+
+	function isExportRing(ring) {
+	  if (!ring) return false;
+	  const v = ring.toString().trim();
+	  return (
+		v.includes("بین الملل") ||
+		v.includes("بين الملل") ||
+		v.includes("بین‌الملل")
+	  );
+	}
+
+
+	function parseNumberSafe(raw) {
+	  if (raw == null) return 0;
+	  let s = String(raw).trim();
+	  const map = {"۰":"0","۱":"1","۲":"2","۳":"3","۴":"4","۵":"5",
+				   "۶":"6","۷":"7","۸":"8","۹":"9"};
+	  s = s.replace(/[۰-۹]/g, d => map[d]);
+	  s = s.replace(/,/g, "");
+	  const match = s.match(/[-+]?\d*\.?\d+/);
+	  if (!match) return 0;
+	  return parseFloat(match[0]);
+	}
+
+
+    // نرمال‌سازی قیمت‌ها به دو واحد: ریال/کیلو و دلار/تن
+	function normalizePrice(rawPrice, unit, fxRaw) {
+	  // عدد خام را امن تبدیل می‌کنیم
+	  const p = parseNumberSafe(rawPrice);
+	  if (!isFinite(p) || p <= 0) {
+		return { priceIRRkg: NaN, priceUSDton: NaN };
+	  }
+
+	  // واحد را تمیز و نرمال می‌کنیم
+	  let u = (unit || "").toString().trim();
+	  // حذف فاصله‌ها
+	  u = u.replace(/\s+/g, "");
+	  // تبدیل به حروف کوچک (اگر حروف لاتین درش باشد)
+	  u = u.toLowerCase();
+
+	  // تشخیص نوع واحد
+	  const isIRR = u.includes("ریال");
+	  const isUSD = u.includes("دلار");
+	  const isTon = u.includes("تن");
+	  const isKg  = u.includes("کیلو") || u.includes("كيلو"); // هم فارسی هم عربی
+
+	  // نرخ ارز را هم امن تبدیل می‌کنیم
+	  let fx = parseNumberSafe(fxRaw);
+	  if (!isFinite(fx) || fx <= 0) {
+		fx = NaN;
+	  }
+
+	  let priceIRRkg = NaN;
+	  let priceUSDton = NaN;
+
+	  if (isIRR && isKg) {
+		// ریال/کیلوگرم
+		priceIRRkg = p;
+		if (fx) {
+		  priceUSDton = (p * 1000) / fx;
+		}
+	  } else if (isIRR && isTon) {
+		// ریال/تن
+		priceIRRkg = p / 1000;
+		if (fx) {
+		  priceUSDton = p / fx;
+		}
+	  } else if (isUSD && isTon) {
+		// دلار/تن
+		priceUSDton = p;
+		if (fx) {
+		  priceIRRkg = (p * fx) / 1000;
+		}
+	  } else if (isUSD && isKg) {
+		// دلار/کیلوگرم
+		priceUSDton = p * 1000;
+		if (fx) {
+		  priceIRRkg = p * fx;
+		}
+	  }
+
+	  return { priceIRRkg, priceUSDton };
+	}
+
+
+	// --- تبدیل ارقام فارسی به انگلیسی برای تاریخ ---
+	const PERSIAN_DIGITS_MAP = {
+	  "۰": "0", "۱": "1", "۲": "2", "۳": "3", "۴": "4",
+	  "۵": "5", "۶": "6", "۷": "7", "۸": "8", "۹": "9"
+	};
+
+	/**
+	 * parseJalaliDate
+	 * ورودی: رشته تاریخ جلالی مثل "1404/08/19" یا "۱۴۰۴/۰۸/۱۹"
+	 * خروجی: آبجکت { jy, jm, jd } یا null اگر معتبر نباشد
+	 */
+	function parseJalaliDate(jalaliDateStr) {
+	  if (!jalaliDateStr) return null;
+
+	  // به رشته تبدیل و تمیزکاری اولیه
+	  let s = String(jalaliDateStr).trim();
+
+	  // تبدیل ارقام فارسی به انگلیسی
+	  s = s.replace(/[۰-۹]/g, d => PERSIAN_DIGITS_MAP[d] || d);
+
+	  // جدا کردن بر اساس / یا -
+	  const parts = s.split(/[\/\-]/);
+	  if (parts.length < 3) return null;
+
+	  const jy = parseInt(parts[0], 10);
+	  const jm = parseInt(parts[1], 10);
+	  const jd = parseInt(parts[2], 10);
+
+	  if (isNaN(jy) || isNaN(jm) || isNaN(jd)) return null;
+
+	  return { jy, jm, jd };
+	}
+
+	/**
+	 * computeWeekKey
+	 * محاسبه‌ی «کلید هفته» بر اساس منطق:
+	 *   هفته بازار = هفته‌ای که با چهارشنبه به پایان می‌رسد.
+	 * برای هر تاریخ جلالی، چهارشنبه‌ی انتهای هفته محاسبه می‌شود
+	 * و رشته‌ای مثل "هفته منتهی به 1404/08/24" برگردانده می‌شود.
+	 *
+	 * این تابع را می‌توانی مستقیماً جایگزین نسخه ساده‌ی قبلی کنی.
+	 */
+	function computeWeekKey(jalaliDateStr) {
+	  const j = parseJalaliDate(jalaliDateStr);
+	  if (!j) {
+		return 'هفته نامشخص';
+	  }
+
+	  // 1) تبدیل جلالی به میلادی با استفاده از کتابخانه جلالی
+	  // اگر در کتابخانه‌ات به‌صورت jalaali.toGregorian است، این خط را اصلاح کن.
+	  const g = jalaaliToGregorian(j.jy, j.jm, j.jd); // { gy, gm, gd }
+
+	  // 2) ساخت Date میلادی در جاوااسکریپت
+	  const baseDate = new Date(g.gy, g.gm - 1, g.gd); // ماه در JS از 0 شروع می‌شود
+	  if (isNaN(baseDate.getTime())) {
+		return 'هفته نامشخص';
+	  }
+
+	  // 3) روز هفته در JS: 0=یکشنبه (Sunday)، 1=دوشنبه، ...، 3=چهارشنبه
+	  const dow = baseDate.getDay();
+	  const WED = 3;
+
+	  // 4) فاصله رو به جلو تا چهارشنبه
+	  // اگر خودِ روز چهارشنبه باشد → delta = 0
+	  // اگر دوشنبه باشد (1) → delta = 2 روز تا چهارشنبه
+	  const deltaToWed = (WED - dow + 7) % 7;
+
+	  // 5) ساخت تاریخ میلادیِ چهارشنبه‌ی انتهای هفته
+	  const weekEndDate = new Date(baseDate);
+	  weekEndDate.setDate(weekEndDate.getDate() + deltaToWed);
+
+	  const gyEnd = weekEndDate.getFullYear();
+	  const gmEnd = weekEndDate.getMonth() + 1; // 1..12
+	  const gdEnd = weekEndDate.getDate();
+
+	  // 6) تبدیل چهارشنبه‌ی انتهایی به جلالی
+	  // اگر در کتابخانه‌ات gregorianToJalaali نیست و مثلا jalaali.toJalaali است، این را اصلاح کن.
+	  const jEnd = gregorianToJalaali(gyEnd, gmEnd, gdEnd); // { jy, jm, jd }
+
+	  const jyEnd = jEnd.jy;
+	  const jmEnd = String(jEnd.jm).padStart(2, '0');
+	  const jdEnd = String(jEnd.jd).padStart(2, '0');
+
+	  // 7) رشته کلید هفته
+	  return `هفته منتهی به ${jyEnd}/${jmEnd}/${jdEnd}`;
+	}
+
+
+    // ---------------------------
+    // پردازش فایل اکسل
+    // ---------------------------
+
+    function parseWorkbookToTrades(workbook) {
+      const trades = [];
+
+      workbook.SheetNames.forEach((sheetName) => {
+        const ws = workbook.Sheets[sheetName];
+        if (!ws) return;
+        const rows = XLSX.utils.sheet_to_json(ws, { defval: null });
+
+        rows.forEach((row) => {
+          const date = row['تاریخ'] || row['تاریخ معامله'] || row['تاریخ عرضه'];
+          const ring = row['رینگ(بازار هدف)'] || row['بازار هدف'];
+          const tradedQtyTon = parseNumberSafe(row['حجم کل معامله شده بر حسب تن']);
+          const tradedQtyUnit = parseNumberSafe(row['حجم كل معامله شده بر حسب واحد عرضه']);
+          const unitOffer = row['واحد عرضه'];
+          const avgPrice = row['متوسط قيمت معامله'] || row['متوسط قیمت معامله'] || row['قیمت پایه'];
+          const priceUnit = row['واحد قیمت دهی'] || row['واحد حجم قیمت دهی'];
+          const fx = row['نرخ تبدیل ارز'] || row['نرخ تسعیر'];
+          const producer = row['تولید کننده'] || row['عرضه کننده'] || row['نام تولیدکننده'];
+
+          // فقط ردیف‌هایی که واقعاً معامله شده‌اند
+          let qtyTon = tradedQtyTon;
+          if (!qtyTon || isNaN(qtyTon) || qtyTon <= 0) {
+            if (/تن/gi.test(String(unitOffer))) {
+              qtyTon = tradedQtyUnit;
+            }
+          }
+          if (!qtyTon || isNaN(qtyTon) || qtyTon <= 0) return;
+
+          const { priceIRRkg, priceUSDton } = normalizePrice(avgPrice, priceUnit, fx);
+          if (isNaN(priceIRRkg) && isNaN(priceUSDton)) return;
+
+          const isExport = isExportRing(ring);
+          trades.push({
+            date,
+            ring,
+            isExport,
+            qtyTon,
+            priceIRRkg,
+            priceUSDton,
+            fx: parseNumberSafe(fx),
+            producer: producer || '-',
+          });
+        });
+      });
+
+      return trades;
+    }
+
+    // محاسبه شاخص‌های هفتگی از روی معاملات
+    function computeWeeklyAggregates(trades) {
+      const weeksMap = new Map();
+
+      for (const tr of trades) {
+        const wk = computeWeekKey(tr.date);
+        if (!weeksMap.has(wk)) {
+          weeksMap.set(wk, {
+            weekKey: wk,
+            domesticTrades: [],
+            exportTrades: [],
+          });
+        }
+        const entry = weeksMap.get(wk);
+        if (tr.isExport) entry.exportTrades.push(tr);
+        else entry.domesticTrades.push(tr);
+      }
+
+      const weeks = [];
+
+      for (const [wk, entry] of weeksMap.entries()) {
+        const summary = {
+          weekKey: wk,
+          domesticVolumeTon: 0,
+          exportVolumeTon: 0,
+          domesticVWAP_IRRkg: null,
+          exportVWAP_USDton: null,
+          domesticHHI: null,
+          exportHHI: null,
+          tradeCount: entry.domesticTrades.length + entry.exportTrades.length,
+        };
+
+        // داخلی
+        let sumQd = 0;
+        let sumPxQd = 0;
+        const producerVolumeDom = {};
+        for (const tr of entry.domesticTrades) {
+          if (!isNaN(tr.priceIRRkg) && tr.priceIRRkg > 0) {
+            sumQd += tr.qtyTon;
+            sumPxQd += tr.priceIRRkg * tr.qtyTon;
+            const key = tr.producer || '-';
+            if (!producerVolumeDom[key]) producerVolumeDom[key] = 0;
+            producerVolumeDom[key] += tr.qtyTon;
+          }
+        }
+        summary.domesticVolumeTon = sumQd;
+        if (sumQd > 0) {
+          summary.domesticVWAP_IRRkg = sumPxQd / sumQd;
+          // HHI داخلی
+          let hhi = 0;
+          Object.values(producerVolumeDom).forEach((v) => {
+            const share = v / sumQd;
+            hhi += share * share;
+          });
+          summary.domesticHHI = hhi;
+        }
+
+        // صادراتی
+        let sumQe = 0;
+        let sumPxQe = 0;
+        const producerVolumeExp = {};
+        for (const tr of entry.exportTrades) {
+          if (!isNaN(tr.priceUSDton) && tr.priceUSDton > 0) {
+            sumQe += tr.qtyTon;
+            sumPxQe += tr.priceUSDton * tr.qtyTon;
+            const key = tr.producer || '-';
+            if (!producerVolumeExp[key]) producerVolumeExp[key] = 0;
+            producerVolumeExp[key] += tr.qtyTon;
+          }
+        }
+        summary.exportVolumeTon = sumQe;
+        if (sumQe > 0) {
+          summary.exportVWAP_USDton = sumPxQe / sumQe;
+          let hhiE = 0;
+          Object.values(producerVolumeExp).forEach((v) => {
+            const share = v / sumQe;
+            hhiE += share * share;
+          });
+          summary.exportHHI = hhiE;
+        }
+
+        weeks.push(summary);
+      }
+
+      // مرتب‌سازی هفته‌ها (تقریباً بر اساس ترتیب متنی)
+      weeks.sort((a, b) => (a.weekKey > b.weekKey ? 1 : -1));
+      return weeks;
+    }
+
+    // ---------------------------
+    // UI: به‌روزرسانی تب تحلیل
+    // ---------------------------
+
+    function formatNumber(v, decimals = 0) {
+      if (v === null || v === undefined || isNaN(v)) return '-';
+      const factor = Math.pow(10, decimals);
+      const rounded = Math.round(v * factor) / factor;
+      return rounded.toLocaleString('fa-IR');
+    }
+
+    function updateAnalysisUI() {
+      const weeks = state.weeks;
+      const statusEl = document.getElementById('status-text');
+      const tableBody = document.getElementById('weekly-table-body');
+      const badge = document.getElementById('data-range-badge');
+
+      tableBody.innerHTML = '';
+
+      if (!weeks || weeks.length === 0) {
+        statusEl.textContent = 'هیچ معامله‌ای شناسایی نشد. ستون‌های فایل را بررسی کنید.';
+        badge.textContent = 'بازه داده: -';
+        document.getElementById('kpi-imb-irr').textContent = '-';
+        document.getElementById('kpi-imb-usd').textContent = '-';
+        document.getElementById('kpi-volumes').textContent = '-';
+        document.getElementById('kpi-volumes-detail').textContent = '';
+        return;
+      }
+
+      statusEl.textContent = `تعداد کل هفته‌های شناسایی‌شده: ${weeks.length.toLocaleString('fa-IR')}`;
+      badge.textContent = `بازه داده: ${weeks[0].weekKey} تا ${weeks[weeks.length - 1].weekKey}`;
+
+      // جدول
+      weeks.forEach((w) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${w.weekKey}</td>
+          <td>${formatNumber(w.domesticVWAP_IRRkg, 1)}</td>
+          <td>${formatNumber(w.exportVWAP_USDton, 2)}</td>
+          <td>${formatNumber(w.domesticVolumeTon, 0)}</td>
+          <td>${formatNumber(w.exportVolumeTon, 0)}</td>
+          <td>${w.domesticHHI !== null ? formatNumber(w.domesticHHI, 3) : '-'}</td>
+          <td>${w.exportHHI !== null ? formatNumber(w.exportHHI, 3) : '-'}</td>
+          <td>${w.tradeCount.toLocaleString('fa-IR')}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+
+      // KPI بر اساس آخرین هفته‌ای که VWAP دارد
+      let lastWeekWithDomestic = null;
+      let lastWeekWithExport = null;
+      for (let i = weeks.length - 1; i >= 0; i--) {
+        if (!lastWeekWithDomestic && weeks[i].domesticVWAP_IRRkg) lastWeekWithDomestic = weeks[i];
+        if (!lastWeekWithExport && weeks[i].exportVWAP_USDton) lastWeekWithExport = weeks[i];
+        if (lastWeekWithDomestic && lastWeekWithExport) break;
+      }
+
+      const imbIrrEl = document.getElementById('kpi-imb-irr');
+      const imbUsdEl = document.getElementById('kpi-imb-usd');
+      const imbIrrWeekEl = document.getElementById('kpi-imb-irr-week');
+      const imbUsdWeekEl = document.getElementById('kpi-imb-usd-week');
+      const volEl = document.getElementById('kpi-volumes');
+      const volDetailEl = document.getElementById('kpi-volumes-detail');
+
+      if (lastWeekWithDomestic) {
+        imbIrrEl.textContent = formatNumber(lastWeekWithDomestic.domesticVWAP_IRRkg, 1);
+        imbIrrWeekEl.textContent = `هفته: ${lastWeekWithDomestic.weekKey}`;
+        volEl.textContent = `${formatNumber(lastWeekWithDomestic.domesticVolumeTon + (lastWeekWithExport ? lastWeekWithExport.exportVolumeTon : 0), 0)}`;
+        volDetailEl.textContent = `داخلی: ${formatNumber(lastWeekWithDomestic.domesticVolumeTon, 0)} تن، صادراتی: ${lastWeekWithExport ? formatNumber(lastWeekWithExport.exportVolumeTon, 0) : '۰'} تن`;
+      } else {
+        imbIrrEl.textContent = '-';
+        imbIrrWeekEl.textContent = '';
+      }
+
+      if (lastWeekWithExport) {
+        imbUsdEl.textContent = formatNumber(lastWeekWithExport.exportVWAP_USDton, 2);
+        imbUsdWeekEl.textContent = `هفته: ${lastWeekWithExport.weekKey}`;
+      } else {
+        imbUsdEl.textContent = '-';
+        imbUsdWeekEl.textContent = '';
+      }
+
+      updateCharts();
+      updateWeekSelect();
+    }
+
+    // ---------------------------
+    // نمودارها
+    // ---------------------------
+
+    function updateCharts() {
+      const ctxP = document.getElementById('chart-prices').getContext('2d');
+      const ctxV = document.getElementById('chart-volumes').getContext('2d');
+      const weeks = state.weeks;
+
+      const labels = weeks.map((w) => w.weekKey);
+      const dataIrr = weeks.map((w) => (w.domesticVWAP_IRRkg ? w.domesticVWAP_IRRkg : null));
+      const dataUsd = weeks.map((w) => (w.exportVWAP_USDton ? w.exportVWAP_USDton : null));
+      const volDom = weeks.map((w) => w.domesticVolumeTon || 0);
+      const volExp = weeks.map((w) => w.exportVolumeTon || 0);
+
+      if (state.charts.prices) state.charts.prices.destroy();
+      if (state.charts.volumes) state.charts.volumes.destroy();
+
+      state.charts.prices = new Chart(ctxP, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'IMB-IRR (ریال/کیلو)',
+              data: dataIrr,
+              borderWidth: 2,
+              tension: 0.25,
+            },
+            {
+              label: 'IMB-USD (دلار/تن)',
+              data: dataUsd,
+              borderWidth: 2,
+              borderDash: [5, 5],
+              tension: 0.25,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              labels: { font: { size: 12 } },
+            },
+          },
+          scales: {
+            x: {
+              ticks: { font: { size: 11 } },
+            },
+            y: {
+              ticks: { font: { size: 11 } },
+            },
+          },
+        },
+      });
+
+      state.charts.volumes = new Chart(ctxV, {
+        type: 'bar',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'حجم داخلی (تن)',
+              data: volDom,
+              borderWidth: 1,
+            },
+            {
+              label: 'حجم صادراتی (تن)',
+              data: volExp,
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              labels: { font: { size: 12 } },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true,
+              ticks: { font: { size: 11 } },
+            },
+            y: {
+              stacked: true,
+              ticks: { font: { size: 11 } },
+            },
+          },
+        },
+      });
+    }
+
+    // ---------------------------
+    // تب قیمت‌گذاری: مقداردهی ورودی‌ها
+    // ---------------------------
+
+    function setDefaultParameters() {
+      // مقادیر پیش‌فرض عمومی (در صورت عدم وجود داده)
+      document.getElementById('inp-cpp-margin').value = 0.06; // µ
+      document.getElementById('inp-tax').value = 0;
+
+      document.getElementById('inp-w-vwap').value = 0.5;
+      document.getElementById('inp-w-cpp').value = 0.3;
+      document.getElementById('inp-w-net').value = 0.2;
+
+      document.getElementById('inp-cfr-t').value = 250; // مثال CFR چین هفته t
+      document.getElementById('inp-cfr-t-1').value = 240; // مثال هفته قبل
+      document.getElementById('inp-phi-glob').value = 0.8;
+
+      document.getElementById('inp-C-form').value = 245; // C متوسط نشریات
+      document.getElementById('inp-m-form').value = 0.1; // 10%
+
+      document.getElementById('inp-eta1').value = 0.4;
+      document.getElementById('inp-eta2').value = 0.4;
+      document.getElementById('inp-eta3').value = 0.2;
+
+      document.getElementById('inp-gamma1').value = 0.4;
+      document.getElementById('inp-gamma2').value = 0.3;
+      document.getElementById('inp-gamma3').value = 0.3;
+
+      // FX مورد انتظار هفته بعد - مقدار نمونه
+      document.getElementById('inp-fx-next').value = 500000; // ریال/دلار (مثال)
+    }
+
+    function updateWeekSelect() {
+      const sel = document.getElementById('select-week');
+      sel.innerHTML = '';
+      const weeks = state.weeks;
+      if (!weeks || weeks.length === 0) {
+        const opt = document.createElement('option');
+        opt.value = '';
+        opt.textContent = 'ابتدا فایل اکسل را بارگذاری کنید';
+        sel.appendChild(opt);
+        return;
+      }
+
+      weeks.forEach((w) => {
+        const opt = document.createElement('option');
+        opt.value = w.weekKey;
+        opt.textContent = `${w.weekKey} (داخلی: ${formatNumber(w.domesticVolumeTon, 0)} تن، صادرات: ${formatNumber(w.exportVolumeTon, 0)} تن)`;
+        sel.appendChild(opt);
+      });
+
+      // پیش‌فرض: آخرین هفته
+      const lastWeek = weeks[weeks.length - 1];
+      sel.value = lastWeek.weekKey;
+      state.selectedWeekKey = lastWeek.weekKey;
+
+      autoFillFromWeek(lastWeek.weekKey);
+    }
+
+    function autoFillFromWeek(weekKey) {
+      const weeks = state.weeks || [];
+      const wk = weeks.find((w) => w.weekKey === weekKey);
+      if (!wk) return;
+
+      // داده‌های معاملاتی هفته t
+      document.getElementById('inp-domestic-vwap').value = wk.domesticVWAP_IRRkg ? wk.domesticVWAP_IRRkg.toFixed(1) : '';
+      document.getElementById('inp-export-vwap').value = wk.exportVWAP_USDton ? wk.exportVWAP_USDton.toFixed(2) : '';
+
+      // FX صادراتی به‌صورت میانگین وزنی بر اساس معاملات صادراتی همان هفته
+      const trades = state.trades.filter((tr) => computeWeekKey(tr.date) === weekKey && tr.isExport && !isNaN(tr.fx) && tr.fx > 0);
+      let sumQ = 0, sumFxQ = 0;
+      trades.forEach((t) => {
+        sumQ += t.qtyTon;
+        sumFxQ += t.fx * t.qtyTon;
+      });
+      const fxExportAvg = sumQ > 0 ? sumFxQ / sumQ : NaN;
+      if (!isNaN(fxExportAvg)) {
+        document.getElementById('inp-fx-export').value = fxExportAvg.toFixed(0);
+        // FX مورد انتظار هفته بعد را نیز در حالت پایه برابر همین مقدار قرار می‌دهیم
+        document.getElementById('inp-fx-next').value = fxExportAvg.toFixed(0);
+      }
+
+      // CPP پایه را تقریباً کمی پایین‌تر از VWAP داخلی فرض می‌کنیم اگر کاربر مقدار دقیق ندارد
+      if (wk.domesticVWAP_IRRkg) {
+        const cppBase = wk.domesticVWAP_IRRkg * 0.9;
+        document.getElementById('inp-cpp-base').value = cppBase.toFixed(1);
+      }
+
+      // Netback دلاری: اگر VWAP صادراتی موجود باشد، کمی کمتر در نظر می‌گیریم (حذف هزینه‌های بندری و ...)
+      if (wk.exportVWAP_USDton) {
+        const nbUsd = wk.exportVWAP_USDton * 0.95;
+        document.getElementById('inp-netback-usd').value = nbUsd.toFixed(2);
+        if (!isNaN(fxExportAvg) && fxExportAvg > 0) {
+          const nbIrr = (nbUsd * fxExportAvg) / 1000.0;
+          document.getElementById('inp-netback-irr').value = nbIrr.toFixed(1);
+        }
+      }
+
+      // مرجع صادراتی P_t^{ref,USD} را در حالت پایه برابر با VWAP صادراتی قرار می‌دهیم
+      if (wk.exportVWAP_USDton) {
+        document.getElementById('inp-pref-usd').value = wk.exportVWAP_USDton.toFixed(2);
+      }
+
+      // به‌روزرسانی CPP / Netback / P_ref و نمایش آن‌ها
+      recalcCPPandRefs();
+    }
+
+    function recalcCPPandRefs() {
+      const vwapIRR = parseNumberSafe(document.getElementById('inp-domestic-vwap').value);
+      const cppBase = parseNumberSafe(document.getElementById('inp-cpp-base').value);
+      const cppMargin = parseNumberSafe(document.getElementById('inp-cpp-margin').value);
+      const tax = parseNumberSafe(document.getElementById('inp-tax').value);
+      const nbIRR = parseNumberSafe(document.getElementById('inp-netback-irr').value);
+
+      const wV = parseNumberSafe(document.getElementById('inp-w-vwap').value);
+      const wC = parseNumberSafe(document.getElementById('inp-w-cpp').value);
+      const wN = parseNumberSafe(document.getElementById('inp-w-net').value);
+
+      // نرمال‌سازی وزن‌ها اگر جمع آن‌ها ۱ نباشد
+      let sumW = 0;
+      [wV, wC, wN].forEach((w) => {
+        if (!isNaN(w)) sumW += w;
+      });
+      let nV = wV, nC = wC, nN = wN;
+      if (sumW > 0 && Math.abs(sumW - 1) > 1e-6) {
+        nV = wV / sumW;
+        nC = wC / sumW;
+        nN = wN / sumW;
+      }
+
+      // CPP
+      let cppIRR = NaN;
+      if (!isNaN(cppBase)) {
+        const mu = isNaN(cppMargin) ? 0 : cppMargin;
+        const T = isNaN(tax) ? 0 : tax;
+        cppIRR = cppBase * (1 + mu) + T;
+      }
+
+      // به‌روزرسانی KPIها
+      document.getElementById('kpi-cpp-irr').textContent = isNaN(cppIRR) ? '-' : formatNumber(cppIRR, 1);
+      document.getElementById('kpi-net-irr').textContent = isNaN(nbIRR) ? '-' : formatNumber(nbIRR, 1);
+
+      let prefIRR = NaN;
+      if (!isNaN(vwapIRR) || !isNaN(cppIRR) || !isNaN(nbIRR)) {
+        const vPart = !isNaN(vwapIRR) ? nV * vwapIRR : 0;
+        const cPart = !isNaN(cppIRR) ? nC * cppIRR : 0;
+        const nPart = !isNaN(nbIRR) ? nN * nbIRR : 0;
+        prefIRR = vPart + cPart + nPart;
+      }
+
+      document.getElementById('kpi-pref-irr').textContent = isNaN(prefIRR) ? '-' : formatNumber(prefIRR, 1);
+
+      return { cppIRR, prefIRR, vwapIRR };
+    }
+
+    function calcPricing() {
+      const { cppIRR, prefIRR, vwapIRR } = recalcCPPandRefs();
+      const prefUSD = parseNumberSafe(document.getElementById('inp-pref-usd').value);
+
+      const cfrT = parseNumberSafe(document.getElementById('inp-cfr-t').value);
+      const cfrT_1 = parseNumberSafe(document.getElementById('inp-cfr-t-1').value);
+      const phiGlob = parseNumberSafe(document.getElementById('inp-phi-glob').value);
+
+      const FXnext = parseNumberSafe(document.getElementById('inp-fx-next').value);
+
+      const C_form = parseNumberSafe(document.getElementById('inp-C-form').value);
+      const m_form = parseNumberSafe(document.getElementById('inp-m-form').value);
+
+      const eta1 = parseNumberSafe(document.getElementById('inp-eta1').value);
+      const eta2 = parseNumberSafe(document.getElementById('inp-eta2').value);
+      const eta3 = parseNumberSafe(document.getElementById('inp-eta3').value);
+
+      const gamma1 = parseNumberSafe(document.getElementById('inp-gamma1').value);
+      const gamma2 = parseNumberSafe(document.getElementById('inp-gamma2').value);
+      const gamma3 = parseNumberSafe(document.getElementById('inp-gamma3').value);
+
+      // CFR fwd
+      let deltaGlob = NaN;
+      if (!isNaN(cfrT) && !isNaN(cfrT_1) && cfrT > 0 && cfrT_1 > 0) {
+        deltaGlob = Math.log(cfrT / cfrT_1);
+      }
+      let cfrFwd = NaN;
+      if (!isNaN(cfrT) && !isNaN(phiGlob) && !isNaN(deltaGlob)) {
+        cfrFwd = cfrT * Math.exp(phiGlob * deltaGlob);
+      }
+
+      // قیمت فرمولی فروشنده
+      let P_form_USD = NaN;
+      if (!isNaN(C_form)) {
+        const m = isNaN(m_form) ? 0 : m_form;
+        P_form_USD = C_form * (1 + m);
+      }
+
+      // نرمال‌سازی وزن‌های η
+      let sumEta = 0;
+      [eta1, eta2, eta3].forEach((e) => { if (!isNaN(e)) sumEta += e; });
+      let nEta1 = eta1, nEta2 = eta2, nEta3 = eta3;
+      if (sumEta > 0 && Math.abs(sumEta - 1) > 1e-6) {
+        nEta1 = eta1 / sumEta;
+        nEta2 = eta2 / sumEta;
+        nEta3 = eta3 / sumEta;
+      }
+
+      // Base_{t+1,USD}^{raw}
+      let baseUSD = NaN;
+      const pRefUSD = isNaN(prefUSD) ? 0 : prefUSD;
+      const cfrComp = isNaN(cfrFwd) ? 0 : cfrFwd;
+      const pFormComp = isNaN(P_form_USD) ? 0 : P_form_USD;
+      if (sumEta > 0) {
+        baseUSD = nEta1 * pRefUSD + nEta2 * cfrComp + nEta3 * pFormComp;
+      }
+
+      // لنگر به ریال/کیلو
+      let anchorIRR = NaN;
+      if (!isNaN(baseUSD) && !isNaN(FXnext) && FXnext > 0) {
+        anchorIRR = (baseUSD * FXnext) / 1000.0;
+      }
+
+      // نرمال‌سازی γ
+      let sumGamma = 0;
+      [gamma1, gamma2, gamma3].forEach((g) => { if (!isNaN(g)) sumGamma += g; });
+      let nG1 = gamma1, nG2 = gamma2, nG3 = gamma3;
+      if (sumGamma > 0 && Math.abs(sumGamma - 1) > 1e-6) {
+        nG1 = gamma1 / sumGamma;
+        nG2 = gamma2 / sumGamma;
+        nG3 = gamma3 / sumGamma;
+      }
+
+      // Base_{t+1,IRR}^{raw}
+      let baseIRR = NaN;
+      const pRefIRR = isNaN(prefIRR) ? 0 : prefIRR;
+      const vwap = isNaN(vwapIRR) ? 0 : vwapIRR;
+      const anchor = isNaN(anchorIRR) ? 0 : anchorIRR;
+      if (sumGamma > 0) {
+        baseIRR = nG1 * pRefIRR + nG2 * vwap + nG3 * anchor;
+      }
+
+      // نمایش در KPIها
+      document.getElementById('kpi-cfr-fwd').textContent = isNaN(cfrFwd) ? '-' : formatNumber(cfrFwd, 2);
+      document.getElementById('kpi-base-usd').textContent = isNaN(baseUSD) ? '-' : formatNumber(baseUSD, 2);
+      document.getElementById('kpi-anchor-irr').textContent = isNaN(anchorIRR) ? '-' : formatNumber(anchorIRR, 1);
+      document.getElementById('kpi-base-irr').textContent = isNaN(baseIRR) ? '-' : formatNumber(baseIRR, 1);
+    }
+
+    // ---------------------------
+    // رویدادها و تب‌ها
+    // ---------------------------
+
+    function initTabs() {
+      const btnAnalysis = document.getElementById('tab-analysis');
+      const btnPricing = document.getElementById('tab-pricing');
+      const contentAnalysis = document.getElementById('content-analysis');
+      const contentPricing = document.getElementById('content-pricing');
+
+      btnAnalysis.addEventListener('click', () => {
+        btnAnalysis.classList.add('active');
+        btnPricing.classList.remove('active');
+        contentAnalysis.classList.add('active');
+        contentPricing.classList.remove('active');
+      });
+
+      btnPricing.addEventListener('click', () => {
+        btnPricing.classList.add('active');
+        btnAnalysis.classList.remove('active');
+        contentPricing.classList.add('active');
+        contentAnalysis.classList.remove('active');
+      });
+    }
+
+    function initFileInput() {
+      const fileInput = document.getElementById('file-input');
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          const data = evt.target.result;
+          const workbook = XLSX.read(data, { type: 'array' });
+          const trades = parseWorkbookToTrades(workbook);
+          state.trades = trades;
+          state.weeks = computeWeeklyAggregates(trades);
+          updateAnalysisUI();
+          // پس از بارگذاری، اگر هفته‌ای وجود دارد، پارامترها را از آخرین هفته پر می‌کنیم
+          if (state.weeks && state.weeks.length > 0) {
+            const lastWeek = state.weeks[state.weeks.length - 1];
+            autoFillFromWeek(lastWeek.weekKey);
+          }
+          // رندر مجدد فرمول‌ها
+          if (typeof renderMathInElement === 'function') {
+            renderMathInElement(document.body, {
+              delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "\\[", right: "\\]", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+              ],
+            });
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      });
+    }
+
+    function initPricingEvents() {
+      document.getElementById('select-week').addEventListener('change', (e) => {
+        const wk = e.target.value;
+        state.selectedWeekKey = wk;
+        autoFillFromWeek(wk);
+      });
+
+      document.getElementById('btn-auto-fill').addEventListener('click', () => {
+        if (state.selectedWeekKey) autoFillFromWeek(state.selectedWeekKey);
+      });
+
+      document.getElementById('btn-reset-defaults').addEventListener('click', () => {
+        setDefaultParameters();
+        if (state.selectedWeekKey) autoFillFromWeek(state.selectedWeekKey);
+      });
+
+      // تغییرات CPP / Netback / وزن‌ها بلافاصله در KPI مرجع داخلی منعکس شود
+      ['inp-domestic-vwap', 'inp-cpp-base', 'inp-cpp-margin', 'inp-tax', 'inp-netback-irr', 'inp-w-vwap', 'inp-w-cpp', 'inp-w-net']
+        .forEach((id) => {
+          const el = document.getElementById(id);
+          el.addEventListener('input', recalcCPPandRefs);
+        });
+
+      document.getElementById('btn-calc-pricing').addEventListener('click', calcPricing);
+    }
+
+    // ---------------------------
+    // مقداردهی اولیه
+    // ---------------------------
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTabs();
+      initFileInput();
+      initPricingEvents();
+      setDefaultParameters();
+
+      // رندر اولیه فرمول‌ها
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: "$$", right: "$$", display: true },
+            { left: "\\[", right: "\\]", display: true },
+            { left: "$", right: "$", display: false },
+            { left: "\\(", right: "\\)", display: false },
+          ],
+        });
+      }
+    });
+  </script>
+</body>
+</html>
